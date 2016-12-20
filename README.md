@@ -1,3 +1,5 @@
+[![PyPI Version](https://img.shields.io/pypi/v/github_token.svg)](https://pypi.python.org/pypi/github_token/)
+
 # GitHub Token
 Creating an app token might not be the simplest task, use this utility and forget
 about all the issues.
