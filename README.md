@@ -1,4 +1,6 @@
 [![PyPI Version](https://img.shields.io/pypi/v/github_token.svg)](https://pypi.python.org/pypi/github_token/)
+[![Code Health](https://landscape.io/github/mariocj89/github-token/master/landscape.svg?style=flat)](https://landscape.io/github/mariocj89/github-token/master)
+
 
 # GitHub Token
 Creating an app token might not be the simplest task, use this utility and forget
