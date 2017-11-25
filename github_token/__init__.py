@@ -62,9 +62,6 @@ class TokenFactory(object):
         self.scopes = scopes
         self.tfa_token = None
 
-    def delete(self):
-        """Delete all auth tokens with the passed app_name"""
-
     def tfa(self, tfa_token):
         """Method to call if a TFA is requested
 
