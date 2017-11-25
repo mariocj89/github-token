@@ -19,7 +19,6 @@ setup(
     keywords=['github', 'authorization', 'tfa', 'token', 'twofactor'],
     license='MIT',
     test_suite='nose.collector',
-    use_2to3=True,
     install_requires=[
         'requests',
         'six',
