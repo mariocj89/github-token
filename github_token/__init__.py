@@ -12,6 +12,7 @@ import operator
 import platform
 
 import requests
+import six.moves
 
 DEFAULT_API_URL = "https://api.github.com/"
 
@@ -26,6 +27,10 @@ class Scopes(enum.Enum):
 
 Scopes.all = functools.reduce(operator.concat, [s.value for s in Scopes], [])
 ALL_SCOPES = Scopes.all
+
+
+def _default_tfa_callback():
+    return six.moves.input("TFA Token Required: ")
 
 
 class AlreadyExistsError(Exception):
@@ -46,6 +51,7 @@ class BadPassword(Exception):
 
 class TokenFactory(object):
     """Factory class to create a token"""
+
     def __init__(self, user, password, app_name, scopes, api_url=DEFAULT_API_URL):
         """Creates the factory to send the request and create the token
 
@@ -100,7 +106,7 @@ class TokenFactory(object):
         response.raise_for_status()
         return response.json()["token"]
 
-    def __call__(self, tfa_token_callback):
+    def __call__(self, tfa_token_callback=_default_tfa_callback):
         """Given a callback does all the work for you :)
 
         This function will attempt to create a the new authorization and
