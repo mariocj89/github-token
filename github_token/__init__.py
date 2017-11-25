@@ -9,6 +9,7 @@ A much more secure way than storing an user password.
 import enum
 import functools
 import operator
+import platform
 
 import requests
 
@@ -86,7 +87,8 @@ class TokenFactory(object):
         headers = dict()
         if self.tfa_token:
             headers["X-GitHub-OTP"] = self.tfa_token
-        payload = dict(note=self.app_name, scopes=self.scopes)
+        token_name = self.app_name + platform.node()  # node specific in case the user has multiple hosts
+        payload = dict(note=token_name, scopes=self.scopes)
         response = requests.post(
                 self.api_url + "authorizations", auth=(self.user, self.password),
                 headers=headers, json=payload
@@ -95,7 +97,7 @@ class TokenFactory(object):
         if response.status_code == 401 and "required" in response.headers.get("X-GitHub-OTP", ""):
             raise TFARequired("TFA required for the user")
         if response.status_code == 422:
-            raise AlreadyExistsError("APP already exists")
+            raise AlreadyExistsError("APP already exists. Please delete {} token".format(token_name))
         if response.status_code == 401:
             raise BadPassword("Bad User/Password")
         response.raise_for_status()
@@ -118,3 +120,4 @@ class TokenFactory(object):
             tfa_token = tfa_token_callback()
             self.tfa(tfa_token)
             return self.create()
+
