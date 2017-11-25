@@ -15,7 +15,7 @@ setup(
     long_description=readme(),
     author='Mario Corchero',
     author_email='mariocj89@gmail.com',
-    url='https://github.com/Mariocj89/github_token',
+    url='https://github.com/Mariocj89/github-token',
     keywords=['github', 'authorization', 'tfa', 'token', 'twofactor'],
     license='MIT',
     test_suite='nose.collector',
