@@ -10,7 +10,7 @@ def readme():
 setup(
     name='github_token',
     packages=['github_token'],
-    version='0.1.0',
+    version='1.0.0',
     description='Library to create github personal auth token',
     long_description=readme(),
     author='Mario Corchero',
