@@ -27,6 +27,31 @@ Usage
             tfa_token_callback=lambda: input("TFA Token: ")
         ))
 
+Develop
+=======
+
+When working locally in the project
+
+Test
+----
+
+::
+
+        python3 -m venv venv3
+        . venv3/bin/activate
+        python3 -m pip install -r dev-requirements.txt
+        python3 -m pytest tests.py
+
+Release
+-------
+
+::
+
+        rm -rf dist/*
+        python3 -m pip install twine
+        python3 setup.py sdist bdist_wheel
+        twine upload dist/*
+
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/github_token.svg
    :target: https://pypi.python.org/pypi/github_token/
 .. |Code Health| image:: https://landscape.io/github/mariocj89/github-token/master/landscape.svg?style=flat
