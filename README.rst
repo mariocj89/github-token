@@ -1,4 +1,4 @@
-|PyPI Version| |Code Health|
+|Travis| |Coverage| |Code Health| |PyPI Version|
 
 GitHub Token
 ============
@@ -31,3 +31,7 @@ Usage
    :target: https://pypi.python.org/pypi/github_token/
 .. |Code Health| image:: https://landscape.io/github/mariocj89/github-token/master/landscape.svg?style=flat
    :target: https://landscape.io/github/mariocj89/github-token/master
+.. |Coverage| image:: https://coveralls.io/repos/github/mariocj89/github-token/badge.svg?branch=master
+   :target: https://coveralls.io/github/mariocj89/github-token?branch=master
+.. |Travis| image:: https://travis-ci.org/mariocj89/github-token.svg?branch=master
+   :target: https://travis-ci.org/mariocj89/github-token
