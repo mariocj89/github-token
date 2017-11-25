@@ -21,7 +21,7 @@ Usage
         password = getpass.getpass()
         app_name = input("App Name to create: ")
         token_factory = github_token.TokenFactory(user, password, app_name,
-                                                  github_token.ALL_SCOPES)
+                                                  github_token.Scopes.all)
 
         print(token_factory(
             tfa_token_callback=lambda: input("TFA Token: ")

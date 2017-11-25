@@ -20,7 +20,7 @@ setup(
     license='MIT',
     test_suite='nose.collector',
     use_2to3=True,
-    install_requires=['requests'],
+    install_requires=['requests', 'enum34;python_version < "3.4"'],
     entry_points={
         'console_scripts': [
             'github_token=github_token.__main__:main'

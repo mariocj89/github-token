@@ -6,11 +6,25 @@ by allowing a painless creation of application tokens.
 Those tokens can be used as just passwords when interating with the API.
 A much more secure way than storing an user password.
 """
+import enum
+import functools
+import operator
 
 import requests
 
 DEFAULT_API_URL = "https://api.github.com/"
-ALL_SCOPES = ["repo", "admin:org", "admin:repo_hook", "admin:org_hook"]
+
+
+class Scopes(enum.Enum):
+    repo = ["repo", "admin:repo_hook"]
+    org = ["admin:org", "admin:org_hook"]
+    user = ["user"]
+    gist = ["gist"]
+    keys = ["admin:public_key", "admin:gpg_key"]
+
+
+Scopes.all = functools.reduce(operator.concat, [s.value for s in Scopes], [])
+ALL_SCOPES = Scopes.all
 
 
 class AlreadyExistsError(Exception):
@@ -21,6 +35,7 @@ class TFARequired(Exception):
     """Indicates the client needs to provide a TFA token
 
     This will be sent to the user if this exception was raised"""
+
 
 class BadPassword(Exception):
     """Indicates the client needs to provide a TFA token
@@ -87,7 +102,7 @@ class TokenFactory(object):
         return response.json()["token"]
 
     def __call__(self, tfa_token_callback):
-        """Given two callbacks does all the work for you :)
+        """Given a callback does all the work for you :)
 
         This function will attempt to create a the new authorization and
         if the user has Two Factor Authorization configured it will call
