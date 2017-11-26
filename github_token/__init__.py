@@ -18,6 +18,7 @@ DEFAULT_API_URL = "https://api.github.com/"
 
 
 class Scopes(enum.Enum):
+    public = []  # Access to the user public info
     repo = ["repo", "admin:repo_hook"]
     org = ["admin:org", "admin:org_hook"]
     user = ["user"]
